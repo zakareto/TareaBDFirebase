@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nuevo Producto</title>
+</head>
+<body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+	var firebaseConfig = {
+        apiKey: "AIzaSyBCmhLeW4Tm1AXXF_R1hFP_q6sklJ_i8AI",
+    authDomain: "datos-53800.firebaseapp.com",
+    databaseURL: "https://datos-53800.firebaseio.com",
+    projectId: "datos-53800",
+    storageBucket: "datos-53800.appspot.com",
+    messagingSenderId: "266679657746",
+    appId: "1:266679657746:web:e1d4306ffa6959e8237fcb"
+    //measurementId: "G-68SBB712F7"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  //Guardando la info en la BD de FireBase
+// crear referencia a la BD
+var dataDB= firebase.database().ref('Inventario').push();
+
+function agregar()
+{
+	var Descripcion= document.getElementById('Descripcion');
+	var Proveedor= document.getElementById('Proveedor');
+	var Cantidad= document.getElementById('Cantidad');
+	dataDB.set({
+			Descripcion: Descripcion.value,
+			Proveedor: Proveedor.value,
+			Cantidad: Cantidad.value
+		});
+	alert('producto agregado correctamente');
+}
+
+</script>
+<h1>Agregar Producto</h1>
+<form action="" method="post">
+    <input id="Descripcion" class="input" type="text" value="" placeholder="Descripcion" required /><br />
+    <input id="Proveedor" class="input" type="text" value="" placeholder="Proveedor" required /><br />
+  <input id="Cantidad" class="input" type="text" value="" maxlength="100" placeholder="Cantidad" required /><br />
+  <button id="submit_button" type="submit" onclick="agregar()">agregar</button>
+	<input type="button" onclick="location.href='vista.html';" value="Regresar"/>
+  </form>
+
+</body>
+</html>
